@@ -110,36 +110,57 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      height: 44px;
+      gap: 6px;
+      height: 48px;
       flex-shrink: 0;
       background: var(--surface);
       border: 1px solid var(--outline);
       border-radius: var(--radius-md);
-      padding: 0 10px;
+      padding: 0 8px;
     }
 
     .topbar-left {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       min-width: 0;
+      flex: 1;
+    }
+
+    .topbar-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      padding: 2px 0;
+    }
+
+    .topbar-strip::-webkit-scrollbar {
+      display: none;
     }
 
     .icon-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       background: var(--surface-2);
       color: var(--text);
       border: 1px solid var(--outline);
       border-radius: var(--radius-sm);
-      height: 34px;
-      padding: 0 10px;
-      font-size: 13px;
+      height: 36px;
+      padding: 0 9px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
+      flex-shrink: 0;
       transition: transform 0.1s ease, background-color 0.15s ease;
     }
 
@@ -148,19 +169,254 @@
       background: var(--surface-3);
     }
 
+    .icon-btn .btn-label {
+      display: none;
+    }
+
+    @media (min-width: 540px) {
+      .icon-btn .btn-label {
+        display: inline;
+      }
+    }
+
     .mode-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      height: 36px;
       background: var(--surface-2);
+      border: 1px solid var(--outline);
       border-radius: 999px;
-      padding: 5px 10px;
+      padding: 0 11px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+
+    .top-chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 36px;
+      padding: 0 10px 0 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--outline);
+      border-radius: 999px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .top-chip:active {
+      transform: scale(0.95);
+      background: var(--surface-3);
+    }
+
+    .top-chip.open {
+      border-color: var(--accent);
+      background: var(--surface-3);
+    }
+
+    .top-chip.disabled {
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    .top-chip-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .top-chip.open .top-chip-icon {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .top-chip-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.08;
+    }
+
+    .top-chip-label {
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .top-chip-val {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text);
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    .top-chip-chev {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.15s ease;
+    }
+
+    .top-chip.open .top-chip-chev {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    /* Custom Stylish Option Sheet & Option Cards */
+    .opt-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .opt-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .opt-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--outline);
+      background: var(--surface-2);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .opt-card:active {
+      transform: scale(0.97);
+    }
+
+    .opt-card.active {
+      border-color: var(--accent);
+      background: var(--surface-3);
+    }
+
+    .opt-card-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 800;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .opt-card.active .opt-card-badge {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .opt-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .opt-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .opt-card-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.25;
+    }
+
+    .opt-card-tag {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      color: var(--accent);
+    }
+
+    .opt-card.active .opt-card-tag {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .opt-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--outline);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: transparent;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .opt-card.active .opt-check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .side-disc {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .side-disc.w {
+      background: #FAF8F2;
+      border: 1.5px solid #26282E;
+    }
+
+    .side-disc.b {
+      background: #1C1F26;
+      border: 1.5px solid #D4AF37;
+    }
+
+    .side-disc.r {
+      background: conic-gradient(#FAF8F2 0deg 180deg, #1C1F26 180deg 360deg);
+      border: 1.5px solid var(--accent);
     }
 
     .turn-dot {
@@ -578,62 +834,19 @@
       animation: shakeX 0.34s ease;
     }
 
-    /* Landscape side panel (shown only on wide landscape screens) */
-    .side-panel {
-      display: none;
-    }
-
     @media (orientation: landscape) and (min-aspect-ratio: 11/10) {
       #app {
         padding: calc(6px + var(--safe-top)) calc(10px + var(--safe-right)) calc(6px + var(--safe-bottom)) calc(10px + var(--safe-left));
       }
 
       .stage {
-        flex-direction: row;
-        align-items: stretch;
+        align-items: center;
         justify-content: center;
-        gap: 12px;
       }
 
       .board-column {
-        flex: 0 1 auto;
-        width: auto;
-      }
-
-      .side-panel {
-        display: flex;
-        flex-direction: column;
-        width: 240px;
-        max-width: 32vw;
-        background: var(--surface);
-        border: 1px solid var(--outline);
-        border-radius: var(--radius-md);
-        padding: 10px;
-        gap: 8px;
-        min-height: 0;
-      }
-
-      .side-title {
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        color: var(--text-muted);
-      }
-
-      .side-moves {
         flex: 1;
-        min-height: 0;
-        overflow-y: auto;
-        background: var(--surface-2);
-        border-radius: var(--radius-sm);
-        padding: 8px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 12px;
-      }
-
-      .dock {
-        max-width: 100%;
+        width: 100%;
       }
     }
 
@@ -777,24 +990,49 @@
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
       gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 4px;
     }
 
     .seg-btn {
-      height: 36px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--outline);
-      background: var(--surface);
+      min-height: 44px;
+      padding: 5px 4px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: transparent;
       color: var(--text-muted);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      line-height: 1.1;
+      transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .seg-btn:active {
+      transform: scale(0.95);
+    }
+
+    .seg-btn small {
+      font-size: 9px;
+      font-weight: 700;
+      opacity: 0.78;
     }
 
     .seg-btn.active {
       background: var(--accent);
       color: var(--accent-ink);
       border-color: var(--accent);
+    }
+
+    .seg-btn.active small {
+      opacity: 0.9;
     }
 
     /* Live Game Info Card inside Settings -> GAME */
@@ -853,30 +1091,6 @@
       color: var(--danger);
       border-color: rgba(229, 83, 83, 0.45);
     }
-
-    .move-list-box {
-      background: var(--surface);
-      border: 1px solid var(--outline);
-      border-radius: var(--radius-sm);
-      max-height: 140px;
-      overflow-y: auto;
-      padding: 8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-    }
-
-    .move-row {
-      display: grid;
-      grid-template-columns: 32px 1fr 1fr;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    .move-row:nth-child(odd) {
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .move-num { color: var(--text-muted); }
 
     /* Theme Grid */
     .theme-grid {
@@ -1021,11 +1235,57 @@
       <div class="topbar-left">
         <button class="icon-btn" id="btnTopSettings" aria-label="Settings">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span>Settings</span>
+          <span class="btn-label">Settings</span>
         </button>
-        <div class="mode-pill" id="modePill">
-          <span class="turn-dot white" id="turnDot"></span>
-          <span id="modePillText">vs AI · Club</span>
+        <div class="topbar-strip">
+          <div class="mode-pill" id="modePill">
+            <span class="turn-dot white" id="turnDot"></span>
+            <span id="modePillText">vs AI · Club</span>
+          </div>
+
+          <button type="button" class="top-chip" id="chipMode" data-picker="mode" aria-label="Game Mode">
+            <span class="top-chip-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 2v6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+            </span>
+            <span class="top-chip-text">
+              <span class="top-chip-label">Game Mode</span>
+              <span class="top-chip-val" id="topModeVal">vs AI</span>
+            </span>
+            <svg class="top-chip-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+
+          <button type="button" class="top-chip" id="chipDiff" data-picker="diff" aria-label="AI Difficulty">
+            <span class="top-chip-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+            <span class="top-chip-text">
+              <span class="top-chip-label">AI Difficulty</span>
+              <span class="top-chip-val" id="topDiffVal">Club</span>
+            </span>
+            <svg class="top-chip-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+
+          <button type="button" class="top-chip" id="chipSide" data-picker="side" aria-label="Play As">
+            <span class="top-chip-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 8l-4 4 .9 5.6L12 15l-4.9 2.6.9-5.6-4-4 5.6-.8L12 2z"/></svg>
+            </span>
+            <span class="top-chip-text">
+              <span class="top-chip-label">Play As</span>
+              <span class="top-chip-val" id="topSideVal">White</span>
+            </span>
+            <svg class="top-chip-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+
+          <button type="button" class="top-chip" id="chipTime" data-picker="time" aria-label="Time Control">
+            <span class="top-chip-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/></svg>
+            </span>
+            <span class="top-chip-text">
+              <span class="top-chip-label">Time Control</span>
+              <span class="top-chip-val" id="topTimeVal">Untimed</span>
+            </span>
+            <svg class="top-chip-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
         </div>
       </div>
       <div class="elo-badge" id="eloBadge">ELO 1200</div>
@@ -1074,11 +1334,6 @@
         </div>
       </div>
 
-      <!-- Landscape Side Panel -->
-      <aside class="side-panel">
-        <div class="side-title">Move History</div>
-        <div class="side-moves" id="sideMoves"></div>
-      </aside>
     </main>
 
     <!-- Bottom Action Dock -->
@@ -1143,44 +1398,40 @@
           <div>
             <span class="field-label">Game Mode</span>
             <div class="seg-group" id="segMode">
-              <button class="seg-btn active" data-val="ai">vs AI</button>
-              <button class="seg-btn" data-val="pvp">2-Player</button>
+              <button class="seg-btn active" data-val="ai"><span>vs AI</span><small>Solo Engine</small></button>
+              <button class="seg-btn" data-val="pvp"><span>2-Player</span><small>Pass &amp; Play</small></button>
             </div>
           </div>
 
           <div id="difficultyWrap">
             <span class="field-label">AI Difficulty</span>
             <div class="seg-group" id="segDiff">
-              <button class="seg-btn" data-val="casual">Casual</button>
-              <button class="seg-btn active" data-val="club">Club</button>
-              <button class="seg-btn" data-val="master">Master</button>
-              <button class="seg-btn" data-val="gm">GM</button>
+              <button class="seg-btn" data-val="casual"><span>Casual</span><small>900</small></button>
+              <button class="seg-btn active" data-val="club"><span>Club</span><small>1250</small></button>
+              <button class="seg-btn" data-val="master"><span>Master</span><small>1650</small></button>
+              <button class="seg-btn" data-val="gm"><span>GM</span><small>2050</small></button>
             </div>
           </div>
 
           <div id="sideWrap">
             <span class="field-label">Play As</span>
             <div class="seg-group" id="segSide">
-              <button class="seg-btn active" data-val="w">White</button>
-              <button class="seg-btn" data-val="b">Black</button>
-              <button class="seg-btn" data-val="r">Random</button>
+              <button class="seg-btn active" data-val="w"><span>White</span><small>1st Move</small></button>
+              <button class="seg-btn" data-val="b"><span>Black</span><small>Counter</small></button>
+              <button class="seg-btn" data-val="r"><span>Random</span><small>50 / 50</small></button>
             </div>
           </div>
 
           <div>
             <span class="field-label">Time Control</span>
             <div class="seg-group" id="segTime">
-              <button class="seg-btn active" data-val="0">Untimed</button>
-              <button class="seg-btn" data-val="180">3m</button>
-              <button class="seg-btn" data-val="300">5m</button>
-              <button class="seg-btn" data-val="600">10m</button>
+              <button class="seg-btn active" data-val="0"><span>Untimed</span><small>Relaxed</small></button>
+              <button class="seg-btn" data-val="180"><span>3m</span><small>Blitz</small></button>
+              <button class="seg-btn" data-val="300"><span>5m</span><small>Blitz</small></button>
+              <button class="seg-btn" data-val="600"><span>10m</span><small>Rapid</small></button>
             </div>
           </div>
 
-          <div>
-            <span class="field-label">Move History</span>
-            <div class="move-list-box" id="settingsMoves">No moves yet.</div>
-          </div>
         </section>
 
         <!-- DISPLAY Section -->
@@ -1231,6 +1482,21 @@
           </div>
         </section>
       </div>
+    </div>
+  </div>
+
+
+  <!-- Stylish Custom Option Picker Bottom Sheet -->
+  <div class="overlay" id="pickerOverlay">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="pickerTitle">
+      <div class="sheet-header">
+        <div>
+          <div class="sheet-title" id="pickerTitle">Select Option</div>
+          <div id="pickerSubtitle" style="font-size:11px;color:var(--text-muted);font-weight:600;margin-top:2px;">Choose your match preference</div>
+        </div>
+        <button class="close-btn" id="btnClosePicker" aria-label="Close">&times;</button>
+      </div>
+      <div class="sheet-body" id="pickerBody"></div>
     </div>
   </div>
 
@@ -2272,6 +2538,19 @@
       turnDot: document.getElementById("turnDot"),
       modePillText: document.getElementById("modePillText"),
       eloBadge: document.getElementById("eloBadge"),
+      chipMode: document.getElementById("chipMode"),
+      chipDiff: document.getElementById("chipDiff"),
+      chipSide: document.getElementById("chipSide"),
+      chipTime: document.getElementById("chipTime"),
+      topModeVal: document.getElementById("topModeVal"),
+      topDiffVal: document.getElementById("topDiffVal"),
+      topSideVal: document.getElementById("topSideVal"),
+      topTimeVal: document.getElementById("topTimeVal"),
+      pickerOverlay: document.getElementById("pickerOverlay"),
+      pickerTitle: document.getElementById("pickerTitle"),
+      pickerSubtitle: document.getElementById("pickerSubtitle"),
+      pickerBody: document.getElementById("pickerBody"),
+      btnClosePicker: document.getElementById("btnClosePicker"),
       topStrip: document.getElementById("topStrip"),
       bottomStrip: document.getElementById("bottomStrip"),
       topAvatar: document.getElementById("topAvatar"),
@@ -2304,8 +2583,6 @@
       segTime: document.getElementById("segTime"),
       difficultyWrap: document.getElementById("difficultyWrap"),
       sideWrap: document.getElementById("sideWrap"),
-      settingsMoves: document.getElementById("settingsMoves"),
-      sideMoves: document.getElementById("sideMoves"),
       themeGrid: document.getElementById("themeGrid"),
       toggleCoords: document.getElementById("toggleCoords"),
       toggleLegal: document.getElementById("toggleLegal"),
@@ -2556,31 +2833,24 @@
       renderStrip(bottomColor, dom.bottomCaptured, dom.bottomClock, dom.bottomStrip, dom.bottomAvatar, dom.bottomName);
     }
 
-    function renderMovesHTML() {
-      if (!engine.history.length) {
-        const empty = '<div style="color:var(--text-muted)">No moves yet.</div>';
-        dom.settingsMoves.innerHTML = empty;
-        dom.sideMoves.innerHTML = empty;
-        return;
-      }
-      let html = "";
-      for (let i = 0; i < engine.history.length; i += 2) {
-        const num = Math.floor(i / 2) + 1;
-        const wSan = engine.history[i].san || "";
-        const bSan = engine.history[i + 1] ? engine.history[i + 1].san : "";
-        html += `<div class="move-row"><span class="move-num">${num}.</span><span>${wSan}</span><span>${bSan}</span></div>`;
-      }
-      dom.settingsMoves.innerHTML = html;
-      dom.sideMoves.innerHTML = html;
-      dom.settingsMoves.scrollTop = dom.settingsMoves.scrollHeight;
-      dom.sideMoves.scrollTop = dom.sideMoves.scrollHeight;
-    }
-
     function updateUI() {
       const diffLabels = { casual: "Casual", club: "Club", master: "Master", gm: "GM" };
-      dom.modePillText.textContent = state.mode === "ai" ? `vs AI · ${diffLabels[state.difficulty]}` : "2-Player Pass & Play";
+      const sideLabels = { w: "White", b: "Black", r: "Random" };
+      const timeLabels = { 0: "Untimed", 180: "3m", 300: "5m", 600: "10m" };
+      dom.modePillText.textContent = state.mode === "ai" ? `vs AI · ${diffLabels[state.difficulty]}` : "2-Player";
       dom.turnDot.className = "turn-dot " + (engine.turn === "w" ? "white" : "black");
       dom.eloBadge.textContent = "ELO " + Math.round(state.elo);
+
+      // Sync top bar stylish chips beside vs AI · Club
+      dom.topModeVal.textContent = state.mode === "ai" ? "vs AI" : "2-Player";
+      dom.topDiffVal.textContent = state.mode === "ai" ? diffLabels[state.difficulty] : "—";
+      dom.topSideVal.textContent = state.mode === "ai" ? sideLabels[state.sidePref] : "—";
+      dom.topTimeVal.textContent = timeLabels[state.timeControl] || "Untimed";
+
+      dom.chipDiff.classList.toggle("disabled", state.mode !== "ai");
+      dom.chipSide.classList.toggle("disabled", state.mode !== "ai");
+      dom.chipDiff.disabled = state.mode !== "ai";
+      dom.chipSide.disabled = state.mode !== "ai";
 
       // Strictly 5 hints UI
       dom.hintBadge.textContent = `${state.hintsLeft}/${MAX_HINTS_PER_GAME}`;
@@ -2601,7 +2871,6 @@
       dom.toggleLegal.classList.toggle("on", state.showLegal);
 
       renderCapturedAndClocks();
-      renderMovesHTML();
       renderHighlights();
     }
 
@@ -3079,28 +3348,184 @@
       });
     }
 
-    wireSegment(dom.segMode, (val) => {
+    function applyGameMode(val) {
       if (state.mode === val) return;
       state.mode = val;
+      setSegmentActive(dom.segMode, val);
       startNewGame(false);
       showToast(val === "ai" ? "Mode: vs AI" : "Mode: 2-Player");
-    });
+    }
 
-    wireSegment(dom.segDiff, (val) => {
+    function applyDifficulty(val) {
       state.difficulty = val;
+      setSegmentActive(dom.segDiff, val);
       updateUI();
       saveCloudState();
       showToast("AI Difficulty: " + val.toUpperCase());
-    });
+    }
 
-    wireSegment(dom.segSide, (val) => {
+    function applySidePref(val) {
       state.sidePref = val;
+      setSegmentActive(dom.segSide, val);
       startNewGame(false);
+      const lbl = { w: "White", b: "Black", r: "Random" }[val] || "White";
+      showToast("Play As: " + lbl);
+    }
+
+    function applyTimeControl(val) {
+      state.timeControl = parseInt(val, 10) || 0;
+      setSegmentActive(dom.segTime, state.timeControl);
+      startNewGame(false);
+      const lbl = { 0: "Untimed", 180: "3m", 300: "5m", 600: "10m" }[state.timeControl] || "Untimed";
+      showToast("Time Control: " + lbl);
+    }
+
+    wireSegment(dom.segMode, applyGameMode);
+    wireSegment(dom.segDiff, applyDifficulty);
+    wireSegment(dom.segSide, applySidePref);
+    wireSegment(dom.segTime, applyTimeControl);
+
+    const PICKER_CONFIGS = {
+      mode: {
+        title: "Game Mode",
+        subtitle: "Choose solo AI engine or local pass & play",
+        grid: false,
+        getCurrent: () => state.mode,
+        apply: applyGameMode,
+        options: [
+          {
+            val: "ai",
+            title: "vs AI Engine",
+            sub: "Challenge the adaptive alpha-beta chess engine",
+            tag: "SOLO",
+            badge: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 2v6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>'
+          },
+          {
+            val: "pvp",
+            title: "2-Player Pass & Play",
+            sub: "Play face-to-face on the same device",
+            tag: "LOCAL",
+            badge: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+          }
+        ]
+      },
+      diff: {
+        title: "AI Difficulty",
+        subtitle: "Select engine search depth and tactical precision",
+        grid: true,
+        getCurrent: () => state.difficulty,
+        apply: applyDifficulty,
+        options: [
+          { val: "casual", title: "Casual", sub: "Relaxed play, forgiving tactics", tag: "900", badge: "I" },
+          { val: "club", title: "Club", sub: "Balanced positional & tactical play", tag: "1250", badge: "II" },
+          { val: "master", title: "Master", sub: "Deep lookahead & sharp combinations", tag: "1650", badge: "III" },
+          { val: "gm", title: "Grandmaster", sub: "Maximum search & zero mercy", tag: "2050", badge: "GM" }
+        ]
+      },
+      side: {
+        title: "Play As",
+        subtitle: "Pick your pieces for the next match",
+        grid: false,
+        getCurrent: () => state.sidePref,
+        apply: applySidePref,
+        options: [
+          {
+            val: "w",
+            title: "White Pieces",
+            sub: "Take the initiative and make the opening move",
+            tag: "1ST",
+            badge: '<span class="side-disc w"></span>'
+          },
+          {
+            val: "b",
+            title: "Black Pieces",
+            sub: "Defend, counterattack, and play from the black side",
+            tag: "2ND",
+            badge: '<span class="side-disc b"></span>'
+          },
+          {
+            val: "r",
+            title: "Random Side",
+            sub: "Flip a coin automatically at the start of each game",
+            tag: "50/50",
+            badge: '<span class="side-disc r"></span>'
+          }
+        ]
+      },
+      time: {
+        title: "Time Control",
+        subtitle: "Set the match clock per player",
+        grid: true,
+        getCurrent: () => String(state.timeControl),
+        apply: applyTimeControl,
+        options: [
+          { val: "0", title: "Untimed", sub: "No clock pressure", tag: "∞", badge: "∞" },
+          { val: "180", title: "3 Minutes", sub: "Fast-paced Blitz", tag: "BLITZ", badge: "3m" },
+          { val: "300", title: "5 Minutes", sub: "Classic Blitz", tag: "BLITZ", badge: "5m" },
+          { val: "600", title: "10 Minutes", sub: "Tactical Rapid", tag: "RAPID", badge: "10m" }
+        ]
+      }
+    };
+
+    const checkIconSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    function closePicker() {
+      dom.pickerOverlay.classList.remove("open");
+      [dom.chipMode, dom.chipDiff, dom.chipSide, dom.chipTime].forEach(c => c.classList.remove("open"));
+    }
+
+    function openPicker(kind) {
+      const cfg = PICKER_CONFIGS[kind];
+      if (!cfg) return;
+      if ((kind === "diff" || kind === "side") && state.mode !== "ai") return;
+
+      Sound.ensure();
+      closePicker();
+      const chipMap = { mode: dom.chipMode, diff: dom.chipDiff, side: dom.chipSide, time: dom.chipTime };
+      if (chipMap[kind]) chipMap[kind].classList.add("open");
+
+      dom.pickerTitle.textContent = cfg.title;
+      dom.pickerSubtitle.textContent = cfg.subtitle;
+      const currentVal = String(cfg.getCurrent());
+
+      const listEl = document.createElement("div");
+      listEl.className = cfg.grid ? "opt-card-grid" : "opt-card-list";
+
+      cfg.options.forEach((opt) => {
+        const isActive = String(opt.val) === currentVal;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt-card" + (isActive ? " active" : "");
+        btn.innerHTML = `
+          <div class="opt-card-badge">${opt.badge}</div>
+          <div class="opt-card-body">
+            <div class="opt-card-title">
+              <span>${opt.title}</span>
+              ${opt.tag ? `<span class="opt-card-tag">${opt.tag}</span>` : ""}
+            </div>
+            <div class="opt-card-sub">${opt.sub}</div>
+          </div>
+          <div class="opt-check">${checkIconSvg}</div>
+        `;
+        btn.addEventListener("click", () => {
+          closePicker();
+          cfg.apply(opt.val);
+        });
+        listEl.appendChild(btn);
+      });
+
+      dom.pickerBody.innerHTML = "";
+      dom.pickerBody.appendChild(listEl);
+      dom.pickerOverlay.classList.add("open");
+    }
+
+    [dom.chipMode, dom.chipDiff, dom.chipSide, dom.chipTime].forEach((chip) => {
+      chip.addEventListener("click", () => openPicker(chip.dataset.picker));
     });
 
-    wireSegment(dom.segTime, (val) => {
-      state.timeControl = parseInt(val, 10) || 0;
-      startNewGame(false);
+    dom.btnClosePicker.addEventListener("click", closePicker);
+    dom.pickerOverlay.addEventListener("click", (e) => {
+      if (e.target === dom.pickerOverlay) closePicker();
     });
 
     dom.themeGrid.addEventListener("click", (e) => {
